@@ -1,0 +1,10 @@
+# Modulos
+/node_modules
+/lib
+
+# Arquivos
+package-lock.json
+.env
+.vscode
+.DS_STORE
+*.tgz
