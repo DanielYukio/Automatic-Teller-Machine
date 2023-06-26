@@ -1,16 +1,16 @@
 import mysql from 'mysql2';
 import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
-import { DatabaseConfig } from '../config';
+import { DBConfig } from '../config';
 
 export class DatabaseService {
     private static _instance: DatabaseService | null;
 
     private _pool = mysql.createPool({
-        host: DatabaseConfig.DB_HOST,
-        user: DatabaseConfig.DB_USER,
-        password: DatabaseConfig.DB_PASSWORD,
-        database: DatabaseConfig.DB_NAME,
-        port: DatabaseConfig.DB_PORT,
+        host: DBConfig.DB_HOST,
+        user: DBConfig.DB_USER,
+        password: DBConfig.DB_PASSWORD,
+        database: DBConfig.DB_NAME,
+        port: DBConfig.DB_PORT,
         connectionLimit: 1000,
     });
 
