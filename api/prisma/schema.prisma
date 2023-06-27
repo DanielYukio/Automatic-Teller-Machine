@@ -7,14 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Client {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
-  name String
-  accountNumber BigInt @unique
-  accontBalance Decimal
-  creationDate DateTime
-  updateDate DateTime
+  id              Int           @id @default(autoincrement())
+  email           String        @unique
+  name            String
+  accountNumber   BigInt        @unique
+  accontBalance   Decimal
+  creationDate    DateTime
+  updateDate      DateTime
+  originClient    Transaction[] @relation("originClient")
+  secondaryClient Transaction[] @relation("secondaryClient")
 }
 
+model Transaction {
+  id                Int             @id @default(autoincrement())
+  value             Decimal
+  type              TransactionType
+  originClientId    Int
+  secondaryClientId Int?
+  originClient      Client          @relation("originClient", fields: [originClientId], references: [id])
+  secondaryClient   Client?         @relation("secondaryClient", fields: [secondaryClientId], references: [id])
+}
+
+enum TransactionType {
+  DEPOSITO
+  SAQUE
+  TRANSFERENCIA
+}
