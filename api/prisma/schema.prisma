@@ -7,13 +7,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model foo {
-  id Int @id @default(autoincrement())
-}
 
-model User {
+model Client {
   id        Int    @id @default(autoincrement())
   email     String @unique
-  firstName String
-  lastName  String
+  name String
+  accountNumber BigInt @unique
+  accontBalance Decimal
+  creationDate DateTime
+  updateDate DateTime
 }
+
