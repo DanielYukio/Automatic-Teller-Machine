@@ -2,8 +2,8 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import { Log } from '../utils';
 import { ServerConfig } from '../config';
-import { AuthRouter, ClientRouter, ResetPassRouter, UnityRouter, UserRouter } from '../routers';
-import { Authenticate, VerifyPrivilegeMaster, VerifyPrivilege } from '../middlewares';
+import { AuthRouter, TransactionRouter, UserRouter } from '../routers';
+import { Authenticate } from '../middlewares';
 
 export class ServerService {
     private static _instance: ServerService | null;
@@ -32,11 +32,9 @@ export class ServerService {
 
     private setupRouters(): void {
         Log('Carregando Rotas do Crud', '');
-        this._server.use('/crud/client', Authenticate, VerifyPrivilegeMaster, ClientRouter);
-        this._server.use('/crud/unity', Authenticate, VerifyPrivilege, UnityRouter);
-        this._server.use('/crud/user', Authenticate, VerifyPrivilege, UserRouter);
         this._server.use('/auth', AuthRouter);
-        this._server.use('/pass', ResetPassRouter);
+        this._server.use('/user', UserRouter);
+        this._server.use('/transaction', Authenticate, TransactionRouter);
     }
 
     public start(): void {

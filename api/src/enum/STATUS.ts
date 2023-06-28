@@ -1,12 +1,5 @@
-export enum Status {
-    Ativo = 'A',
-    Inativo = 'I',
-    Bloqueado = 'B'
-}
-
-export enum LogStatus {
-    Sucesso = 'SUCCESS',
-    Aviso = 'WARNING',
-    Erro = 'ERROR',
-    Desenvolvimento = 'DEVELOP'
+export enum TransactionType {
+    Withdrawal = 'SAQUE',
+    Deposit = 'DEPOSITO',
+    Transfer = 'TRANSFERENCIA'
 }

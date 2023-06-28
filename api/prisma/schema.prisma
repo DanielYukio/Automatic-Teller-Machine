@@ -7,33 +7,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
-  id            BigInt   @id @default(autoincrement())
+model User {
+  id            Int      @id @default(autoincrement())
   email         String   @unique
   name          String
-  account       Account  @relation(fields: [accountNumber], references: [number])
+  password      String
+  account       Account  @relation(fields: [accountNumber], references: [accountNumber])
   accountNumber Int
   creationDate  DateTime
   updateDate    DateTime
 }
 
 model Account {
-  id               BigInt        @id @default(autoincrement())
-  number           Int           @unique
+  id               Int           @id @default(autoincrement())
+  accountNumber    Int           @unique
   balance          Decimal
+  creationDate     DateTime
+  updateDate       DateTime
   originAccount    Transaction[] @relation("originAccount")
   secondaryAccount Transaction[] @relation("secondaryAccount")
-  Client           Client[]
+  Client           User[]
 }
 
 model Transaction {
-  id                     BigInt          @id @default(autoincrement())
+  id                     Int             @id @default(autoincrement())
   amount                 Decimal
   type                   TransactionType
   originAccountNumber    Int
   secondaryAccountNumber Int?
-  originAccount          Account         @relation("originAccount", fields: [originAccountNumber], references: [number])
-  secondaryAccount       Account?        @relation("secondaryAccount", fields: [secondaryAccountNumber], references: [number])
+  originAccount          Account         @relation("originAccount", fields: [originAccountNumber], references: [accountNumber])
+  secondaryAccount       Account?        @relation("secondaryAccount", fields: [secondaryAccountNumber], references: [accountNumber])
+  creationDate           DateTime
 }
 
 enum TransactionType {

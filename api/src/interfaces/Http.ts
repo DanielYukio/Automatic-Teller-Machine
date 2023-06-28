@@ -12,11 +12,3 @@ export interface IFilter {
     sort?: 'ASC' | 'DESC';
     search?: string;
 }
-
-export interface IFilterEvents {
-    DEVICE_CODE?: string;
-    EVE_CLI_ID?: number;
-    EVE_UNI_ID?: number;
-    page?: number;
-    pageSize?: number;
-}
