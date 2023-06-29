@@ -1,49 +1,47 @@
 <ng-container *ngIf="isSession && profile">
-    <div id="menu-container">
-        <mat-toolbar class="tollbarMenu mat-elevation-z4" color="primary">
-            <div id="menu-info">
-                <button id="menu-button" mat-icon-button tabindex="-1">
-                    <!-- <mat-icon>atm</mat-icon> -->
-                    <img src="assets/atm-machine-icon.png" alt="logo">
-                </button>
-                <span class="app-title">Caixa Eletrônico</span>
-            </div>
+    <mat-toolbar class="tollbarMenu mat-elevation-z4" color="primary">
+        <div id="menu-info">
+            <button id="menu-button" mat-icon-button tabindex="-1">
+                <!-- <mat-icon>atm</mat-icon> -->
+                <img src="assets/atm-machine-icon.png" alt="logo">
+            </button>
+            <span class="app-title">Caixa Eletrônico</span>
+        </div>
 
-            <button mat-button routerLink="/dashboard">Página Principal</button>
+        <button mat-button [routerLink]="'dashboard'">Página Principal</button>
 
-            <button mat-button routerlink="/transaction">Transações</button>
+        <button mat-button [routerLink]="'transaction'">Transações</button>
 
-            <div class="flex-spacer"></div>
+        <div class="flex-spacer"></div>
 
-            <div id="btn-profile-container" class="cursor-pointer" [matMenuTriggerFor]="menuProfile">
-                <button mat-icon-button id="btn-profile" class="btn-with-image">
-                    <mat-icon>account_circle</mat-icon>
-                </button>
-                <span *ngIf="sizeDesktop">{{this.profile.name}}</span>
-            </div>
+        <div id="btn-profile-container" class="cursor-pointer" [matMenuTriggerFor]="menuProfile">
+            <button mat-icon-button id="btn-profile" class="btn-with-image">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <span *ngIf="sizeDesktop">{{this.profile.name}}</span>
+        </div>
 
-            <mat-menu #menuProfile="matMenu" id="profile-menu">
-                <div class="profile-menu-content">
-                    <div mat-menu-item routerLink="/account" matTooltip="Acessar Perfil" class="profile-menu-user-item">
-                        <a>
-                            <mat-icon>person</mat-icon>
-                            <span>{{this.profile.name}}</span>
-                        </a>
+        <mat-menu #menuProfile="matMenu" id="profile-menu">
+            <div class="profile-menu-content">
+                <div mat-menu-item class="profile-menu-user-item">
+                    <a>
+                        <mat-icon>person</mat-icon>
+                        <span>{{this.profile.name}}</span>
+                    </a>
 
-                        <a>
-                            <mat-icon>alternate_email</mat-icon>
-                            <span class="profile-menu-text">{{this.profile.email}}</span>
-                        </a>
-                    </div>
-                    <mat-divider class="divider"></mat-divider>
-                    <a mat-menu-item (click)="tryLogout()">
-                        <mat-icon>logout</mat-icon>
-                        <span class="profile-menu-text">Sair da conta</span>
+                    <a>
+                        <mat-icon>alternate_email</mat-icon>
+                        <span class="profile-menu-text">{{this.profile.email}}</span>
                     </a>
                 </div>
-            </mat-menu>
-        </mat-toolbar>
-    </div>
+                <mat-divider class="divider"></mat-divider>
+                <a mat-menu-item (click)="tryLogout()">
+                    <mat-icon>logout</mat-icon>
+                    <span class="profile-menu-text">Sair da conta</span>
+                </a>
+            </div>
+        </mat-menu>
+    </mat-toolbar>
 
     <div id="app-container">
         <ng-content *ngTemplateOutlet="viewPage"></ng-content>

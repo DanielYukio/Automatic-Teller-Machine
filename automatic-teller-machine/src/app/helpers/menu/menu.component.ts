@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Router } from '@angular/router';
 import { IUser, IUserMenu } from 'src/app/_interfaces';
@@ -10,7 +10,8 @@ import { isDesktopWidth } from 'src/app/_utils';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MenuComponent implements OnInit {
 
@@ -19,8 +20,6 @@ export class MenuComponent implements OnInit {
   public profile: IUser | null = null;
   public profileURL = 'assets/noProfile.png';
   public sizeDesktop = true;
-
-  @ViewChild('expansionPanel', { static: false }) expansionPanel?: MatExpansionPanel
 
   constructor(
     private session: SessionService,
@@ -66,12 +65,6 @@ export class MenuComponent implements OnInit {
         };
       }
     );
-  }
-
-  public closeExpansionPanel() {
-    if (this.expansionPanel) {
-      this.expansionPanel.close();
-    }
   }
 
   public removeFocus() {

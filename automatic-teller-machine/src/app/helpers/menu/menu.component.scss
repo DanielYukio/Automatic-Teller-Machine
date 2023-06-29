@@ -1,3 +1,5 @@
+@use "../../_styles/some-fixes.scss";
+
 .tollbarMenu {
     display: flex;
     flex-direction: row;
@@ -46,10 +48,13 @@
     }
 }
 
-#menu-container {
-    height: 7vh !important;
+.tollbarMenu {
+    height: 8vh;
+    max-height: 8vh;
 }
 
 #app-container {
-    height: 93vh !important;
+    height: 92vh;
+    max-height: 92vh;
+    box-sizing: border-box;
 }

@@ -1,0 +1,4 @@
+// Remove do <input type="password"> o ícone de olho padrão do MSEdge
+input::-ms-reveal {
+    display: none;
+}
