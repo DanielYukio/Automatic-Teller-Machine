@@ -24,7 +24,7 @@ export class AuthService extends HttpRouteUtils {
   }
 
   public firstRegister(value: IRegisterParans): Observable<IResponse> {
-    return this.http.post<IResponse>(`${environment.apiUrl}${RouteNames.Auth}/insert`, value);
+    return this.http.post<IResponse>(`${environment.apiUrl}${RouteNames.User}/insert`, value);
   }
 
   public profile(): Observable<IResponse> {

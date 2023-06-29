@@ -31,7 +31,6 @@ export class ServerService {
     }
 
     private setupRouters(): void {
-        Log('Carregando Rotas do Crud', '');
         this._server.use('/auth', AuthRouter);
         this._server.use('/user', UserRouter);
         this._server.use('/transaction', Authenticate, TransactionRouter);

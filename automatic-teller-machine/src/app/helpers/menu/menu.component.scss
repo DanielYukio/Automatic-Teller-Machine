@@ -1,0 +1,55 @@
+.tollbarMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+#menu-info,
+#btn-profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#menu-info {
+    margin-right: 1rem;
+}
+
+.flex-spacer {
+    flex: 1;
+}
+
+.profile-menu-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .profile-menu-user-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        a {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        .divider {
+            margin: 1rem 0;
+        }
+    }
+}
+
+#menu-container {
+    height: 7vh !important;
+}
+
+#app-container {
+    height: 93vh !important;
+}
