@@ -40,10 +40,16 @@ export const Authenticate = (request: Request, response: Response, next: NextFun
         switchMap((id) => from(SinglePrisma.instance.user.findUnique({
             where: { id },
             select: {
-                accountNumber: true,
                 creationDate: true,
                 password: false,
-                account: true,
+                accountNumber: true,
+                account: {
+                    select: {
+                        accountNumber: true,
+                        balance: true,
+                        creationDate: true,
+                    }
+                },
                 email: true,
                 name: true,
                 updateDate: true

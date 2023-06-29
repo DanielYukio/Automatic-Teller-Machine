@@ -13,6 +13,7 @@ declare global {
 }
 
 BigInt.prototype.toJSON = () => {
+    // tslint:disable-next-line:radix
     const int = Number.parseInt((this || '').toString());
     return int ?? (this || '').toString();
 };
@@ -40,17 +41,18 @@ AuthRouter.post('/login', (request, response) => {
             }
 
             const token = jwt.sign({ id: Number(user.id) }, ServerConfig.SVR_PASSWORD, { expiresIn: '2h' }); // 0.004h
-            console.log(JSON.stringify(user))
-            return of({ auth: true, token, user });
+            console.log(JSON.stringify(user));
+            const usr: any = user;
+            if (usr.password) {
+                delete usr['password'];
+            }
+            return of({ auth: true, token, user: usr });
         })
     ).subscribe({
         next: (result) => {
-            console.log(result);
             return HttpResponse.exitWith200(response, 'Login efetuado com sucesso', result);
         },
         error: (error) => {
-            console.log(error);
-
             if (typeof error === 'string') {
                 return HttpResponse.exitWith401(response, error);
             }

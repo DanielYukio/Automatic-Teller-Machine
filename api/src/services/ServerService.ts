@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import { Log } from '../utils';
 import { ServerConfig } from '../config';
-import { AuthRouter, TransactionRouter, UserRouter } from '../routers';
+import { AccountRouter, AuthRouter, TransactionRouter, UserRouter } from '../routers';
 import { Authenticate } from '../middlewares';
 
 export class ServerService {
@@ -35,6 +35,7 @@ export class ServerService {
         this._server.use('/auth', AuthRouter);
         this._server.use('/user', UserRouter);
         this._server.use('/transaction', Authenticate, TransactionRouter);
+        this._server.use('/account', Authenticate, AccountRouter);
     }
 
     public start(): void {

@@ -1,9 +1,34 @@
 import { IResponse } from '../interfaces';
 import { Response } from 'express';
 
+export type statusCode = 200 | 201 | 202 | 400 | 401 | 402 | 404 | 500 | 502;
+
 export class HttpResponse {
 
     private constructor() { }
+
+    public static exitWithCode(code: statusCode, response: Response, message: string, value?: any) {
+        switch (code) {
+            case 200:
+                return this.exitWith200(response, message, value);
+            case 201:
+                return this.exitWith201(response, message, value);
+            case 202:
+                return this.exitWith202(response, message, value);
+            case 400:
+                return this.exitWith400(response, message, value);
+            case 401:
+                return this.exitWith401(response, message, value);
+            case 402:
+                return this.exitWith402(response, message, value);
+            case 404:
+                return this.exitWith404(response, message, value);
+            case 500:
+                return this.exitWith500(response, message, value);
+            case 502:
+                return this.exitWith502(response, message, value);
+        }
+    }
 
     public static exitWith200(response: Response, message: string, value?: any): Response {
         const object: IResponse = { code: 200, error: false, message, value };

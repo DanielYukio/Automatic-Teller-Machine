@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import { HttpResponse, SinglePrisma } from '../utils';
-import { IFilter, IUser } from '../interfaces';
-import { ClientProvider } from '../providers';
-import { throwError, switchMap, Observable, of, from, catchError } from 'rxjs';
+import { ILoggedUser } from '../interfaces';
+import { throwError, switchMap, of, from, catchError } from 'rxjs';
 import { generate } from 'generate-password';
 import bcrypt from 'bcrypt';
 import { Authenticate } from '../middlewares';
@@ -12,7 +11,7 @@ export const UserRouter = Router();
 const prisma = SinglePrisma.instance;
 
 UserRouter.post('/insert', (request, response) => {
-    const object: IUser = request.body;
+    const object: ILoggedUser = request.body;
 
     if (!object.name || !object.email || !object.password) {
         return HttpResponse.exitWith400(response, 'Pârametros Ausentes para Cadastrar Usuário.');
@@ -24,7 +23,6 @@ UserRouter.post('/insert', (request, response) => {
         switchMap((emailExists) => {
             console.log(emailExists);
 
-            console.log()
             const accountNumber = Number(generate({
                 symbols: false,
                 numbers: true,
@@ -46,9 +44,9 @@ UserRouter.post('/insert', (request, response) => {
             })).pipe(
                 catchError((err => {
                     console.log(err);
-                    return of(err)
+                    return of(err);
                 }))
-            )
+            );
         }),
         switchMap((account) => {
             console.log(account);
@@ -56,12 +54,12 @@ UserRouter.post('/insert', (request, response) => {
                 data: {
                     name: object.name,
                     email: object.email,
-                    password: object.password!,
+                    password: object.password,
                     accountNumber: account.accountNumber,
                     creationDate: new Date(),
                     updateDate: new Date()
                 }
-            }))
+            }));
         })
     ).subscribe({
         next: (result) => {
@@ -75,5 +73,5 @@ UserRouter.post('/insert', (request, response) => {
 
 UserRouter.get('/profile', Authenticate, (request, response) => {
     const user = JSON.parse(request.query.user as string);
-    return HttpResponse.exitWith201(response, `Perfil Obtido com Sucesso.`, user)
-})
+    return HttpResponse.exitWith201(response, `Perfil Obtido com Sucesso.`, user);
+});

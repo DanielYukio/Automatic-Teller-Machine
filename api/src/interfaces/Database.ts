@@ -1,17 +1,5 @@
-import { Account, User } from '@prisma/client';
-import { TransactionType } from '../enum';
+import { Account, TransactionType, User } from '@prisma/client';
 
-export interface IUser extends User {
-    account?: Account
-}
-
-export interface ITransaction {
-    id: number;
-    amount: number;
-    type: TransactionType,
-    originAccountNumber: number;
-}
-
-export interface ITransfer extends ITransaction {
-    secondaryAccountNumber: number;
+export interface ILoggedUser extends User {
+    account: Account;
 }
