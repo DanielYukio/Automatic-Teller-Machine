@@ -1,0 +1,38 @@
+<div id="login-container">
+    <div id="formBar">
+        <div id="card" class="mat-elevation-z8">
+            <img id="freLogo" src="assets/atm-machine-icon.png" alt="Logo FreAccess">
+
+            <form [formGroup]="formGroup" (keydown.enter)="onSubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>E-Mail</mat-label>
+                    <input matInput type="text" placeholder="E-Mail do Usuário" formControlName="email" required>
+                    <mat-icon matSuffix>mail_outline</mat-icon>
+
+                    <mat-error *ngIf="controls['email'].hasError('email')">E-mail inválido</mat-error>
+                    <mat-error *ngIf="controls['email'].hasError('required')">E-mail é obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha do Usuário"
+                        formControlName="password" required>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+                    <mat-error *ngIf="controls['password'].hasError('required')">Senha é obrigatória</mat-error>
+                </mat-form-field>
+            </form>
+
+            <div id="card-footer">
+                <button mat-flat-button color="primary" type="button" class="btn-with-loading btn-circle-border"
+                    (click)="onSubmit()" [disabled]="formGroup.invalid">
+                    <mat-progress-spinner *ngIf="loading" color="accent" mode="indeterminate"
+                        diameter="30"></mat-progress-spinner>
+                    <span *ngIf="!loading">Conectar</span>
+                </button>
+
+                <a class="forgot-password-text" routerLink="/register">Não Possui Conta? Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+</div>

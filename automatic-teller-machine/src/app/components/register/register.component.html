@@ -1,0 +1,61 @@
+<div id="register-container">
+    <div id="formBar">
+        <div id="card" class="mat-elevation-z8">
+            <img id="freLogo" src="assets/atm-machine-icon.png" alt="Logo FreAccess">
+
+            <form [formGroup]="formGroup" (keydown.enter)="onSubmit()">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput type="text" placeholder="Nome do Usuário" formControlName="name" required>
+                    <mat-icon matSuffix>person</mat-icon>
+
+                    <mat-error *ngIf="controls['name'].hasError('required')">Nome é obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>E-Mail</mat-label>
+                    <input matInput type="text" placeholder="E-Mail do Usuário" formControlName="email" required>
+                    <mat-icon matSuffix>mail_outline</mat-icon>
+
+                    <mat-error *ngIf="controls['email'].hasError('email')">E-mail inválido</mat-error>
+                    <mat-error *ngIf="controls['email'].hasError('required')">E-mail é obrigatório</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Senha</mat-label>
+                    <input matInput [type]="hidePass ? 'password' : 'text'" placeholder="Senha do Usuário"
+                        formControlName="password" required (input)="onPasswordChange()">
+                    <mat-icon matSuffix (click)="hidePass = !hidePass">{{hidePass ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+
+                    <mat-error *ngIf="controls['password'].hasError('required')">Senha é obrigatória</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Confirmação da Senha</mat-label>
+                    <input matInput [type]="hideConfirmPass ? 'password' : 'text'"
+                        placeholder="Confirmação da Senha do Usuário" formControlName="confirmPass" required
+                        (input)="onPasswordChange()">
+                    <mat-icon matSuffix (click)="hideConfirmPass = !hideConfirmPass">{{hideConfirmPass ?
+                        'visibility_off' : 'visibility'}}</mat-icon>
+
+                    <mat-error *ngIf="controls['confirmPass'].hasError('required')">Confirmar Senha é
+                        obrigatório</mat-error>
+                    <mat-error *ngIf="controls['confirmPass'].hasError('mismatch')">Os valores não
+                        correspondem</mat-error>
+                </mat-form-field>
+            </form>
+
+            <div id="card-footer">
+                <button mat-flat-button color="primary" type="button" class="btn-with-loading" (click)="onSubmit()"
+                    [disabled]="formGroup.invalid">
+                    <mat-progress-spinner *ngIf="loading" color="accent" mode="indeterminate"
+                        diameter="30"></mat-progress-spinner>
+                    <span *ngIf="!loading">Cadastrar</span>
+                </button>
+
+                <a class="forgot-password-text" routerLink="/login">Já Possui Conta? Faça Login</a>
+            </div>
+        </div>
+    </div>
+</div>
