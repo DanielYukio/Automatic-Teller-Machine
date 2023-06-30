@@ -1,22 +1,31 @@
 <div id="dashboard-container">
-    <div class="dashboard-row">
-        <mat-card class="account-info">
-            <span>N° da Conta: {{accountInfo?.accountNumber || 'Não Carregado'}}</span>
-            <strong class="account-balance">{{accountInfo?.balance || '' | currency: 'R$ '}}</strong>
-        </mat-card>
+    <div class="account-info">
+        <span>N° da Conta: {{accountInfo?.accountNumber || 'Não Carregado'}}</span>
 
-        <div class="dashboard-row">
-            <mat-card class="table-card mat-elevation-z8">
-                <div class=""></div>
-            </mat-card>
-
-            <mat-card class="table-card mat-elevation-z8">
-                a
-            </mat-card>
-        </div>
+        <span></span>
+        <span>Seu Saldo é de</span>
+        <strong class="account-balance">{{accountInfo?.balance || '' | currency}}</strong>
     </div>
 
-    <mat-card class="chart-card mat-elevation-z8">
-        a
-    </mat-card>
+    <div class="dashboard-row">
+        <div class="dashboard-row">
+            <button mat-raised-button class="btn-transaction btn-saque"
+                (click)="openTransactionForm(TransactionType.SAQUE)">
+                <mat-icon class="btn-hover-icon">local_atm</mat-icon>
+                <span>Saque</span>
+            </button>
+
+            <button mat-raised-button class="btn-transaction btn-deposit"
+                (click)="openTransactionForm(TransactionType.DEPOSITO)">
+                <mat-icon class="btn-hover-icon">savings</mat-icon>
+                <span>Depósito</span>
+            </button>
+
+            <button mat-raised-button class="btn-transaction btn-transfer"
+                (click)="openTransactionForm(TransactionType.TRANSFERENCIA)">
+                <mat-icon class="btn-hover-icon">sync_alt</mat-icon>
+                <span>Transferência</span>
+            </button>
+        </div>
+    </div>
 </div>

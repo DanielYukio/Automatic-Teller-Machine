@@ -1,22 +1,21 @@
 <ng-container *ngIf="isSession && profile">
     <mat-toolbar class="tollbarMenu mat-elevation-z4" color="primary">
         <div id="menu-info">
-            <button id="menu-button" mat-icon-button tabindex="-1">
-                <!-- <mat-icon>atm</mat-icon> -->
-                <img src="assets/atm-machine-icon.png" alt="logo">
-            </button>
+            <!-- <button id="menu-button" mat-icon-button tabindex="-1">
+                <img src="assets/atm.png" alt="logo">
+            </button> -->
             <span class="app-title">Caixa Eletrônico</span>
         </div>
 
-        <button mat-button [routerLink]="'dashboard'">Página Principal</button>
+        <!-- <button mat-button [routerLink]="'dashboard'">Página Principal</button>
 
-        <button mat-button [routerLink]="'transaction'">Transações</button>
+        <button mat-button [routerLink]="'transaction'">Transações</button> -->
 
         <div class="flex-spacer"></div>
 
         <div id="btn-profile-container" class="cursor-pointer" [matMenuTriggerFor]="menuProfile">
             <button mat-icon-button id="btn-profile" class="btn-with-image">
-                <mat-icon>account_circle</mat-icon>
+                <mat-icon class="profile-icon">account_circle</mat-icon>
             </button>
             <span *ngIf="sizeDesktop">{{this.profile.name}}</span>
         </div>

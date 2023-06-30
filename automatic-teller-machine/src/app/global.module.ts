@@ -27,6 +27,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [],
@@ -66,6 +67,7 @@ import { MatRippleModule } from '@angular/material/core';
     MatDividerModule,
     MatButtonToggleModule,
     MatRippleModule,
+    MatFormFieldModule
   ]
 })
 export class GlobalModule { }

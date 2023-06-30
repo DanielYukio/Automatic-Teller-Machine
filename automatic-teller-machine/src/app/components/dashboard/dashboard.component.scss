@@ -2,6 +2,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
     gap: 4rem;
 }
@@ -10,21 +12,29 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 2rem;
+    gap: 4vw;
     flex: 1;
+    justify-content: space-evenly;
 }
 
 .account-info {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20%;
+    max-width: 100%;
     height: 30%;
     padding: 1rem 0.5rem;
+    gap: 1rem;
+    font-size: 1.2rem;
+
+    span {
+        display: block;
+    }
 }
 
 .account-balance {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 .table-card {
@@ -34,4 +44,38 @@
     align-items: center;
 }
 
-.chart-card {}
+.btn-transaction {
+    height: 10rem;
+    width: 15rem;
+    font-size: 150%;
+}
+
+
+.btn-transaction:not(:hover) {
+    transition: background 1s ease;
+
+    .btn-hover-icon {
+        position: absolute;
+        opacity: 0;
+    }
+}
+
+.btn-saque:hover {}
+
+.btn-transaction:hover {
+    background-color: rgb(227, 249, 255);
+    transition: background 1s ease;
+
+    .btn-hover-icon {
+        position: absolute;
+        display: block;
+        margin-right: -5px;
+        scale: 3;
+        opacity: 1;
+        transition: opacity 1s ease;
+    }
+
+    span {
+        display: none;
+    }
+}

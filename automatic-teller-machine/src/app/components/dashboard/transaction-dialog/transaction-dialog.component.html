@@ -1,0 +1,27 @@
+<mat-card *ngIf="transactionType" class="transction-form-dialog">
+    <button mat-icon-button class="btn-close-dialog" (click)="dialogRef.close()" tabindex="-1">
+        <mat-icon color="warn">close</mat-icon>
+    </button>
+
+    <h1 class="title">Realizar {{transactionType}}</h1>
+
+    <form class="transaction-form">
+        <mat-form-field appearance="outline">
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" [ngModelOptions]="{standalone: true}" [(ngModel)]="transaction.amount"
+                placeholder="Valor para Operação">
+            <mat-icon matPrefix [style.margin-bottom]="'1px'">paid</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="transactionType === 'TRANSFERENCIA'">
+            <mat-label>Recebedor</mat-label>
+            <input matInput type="number" [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="transaction.secondaryAccountNumber" placeholder="Número da Conta Recebedora">
+            <mat-icon matPrefix [style.margin-bottom]="'1px'">pin</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="!formValid" (click)="onSubmit()">
+            Realizar Transação
+        </button>
+    </form>
+</mat-card>

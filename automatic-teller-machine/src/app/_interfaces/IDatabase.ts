@@ -20,11 +20,11 @@ export interface IAccount {
 
 export interface ITransaction {
     id?: number
-    amount: number
+    amount?: number
     type: TransactionType
     originAccountNumber: number
     secondaryAccountNumber: number | null
-    creationDate: Date
+    creationDate?: Date
 }
 
 export interface ITransferTransaction extends ITransaction {

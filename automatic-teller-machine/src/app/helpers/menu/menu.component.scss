@@ -11,6 +11,10 @@
     cursor: pointer;
 }
 
+.app-title {
+    font-size: 3vh;
+}
+
 #menu-info,
 #btn-profile-container {
     display: flex;
@@ -24,6 +28,10 @@
 
 .flex-spacer {
     flex: 1;
+}
+
+.profile-icon {
+    scale: 2;
 }
 
 .profile-menu-content {

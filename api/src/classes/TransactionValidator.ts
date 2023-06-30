@@ -31,12 +31,20 @@ export class TransactionDataValidator extends TransactionValidator {
                 httpStatusCode: 400,
                 message: 'Parâmetros ausentes para efetuar transação'
             });
-        } else if (data.type === TransactionType.TRANSFERENCIA && !data.secondaryAccountNumber) {
-            return of({
-                success: false,
-                httpStatusCode: 400,
-                message: 'Número da conta recebedora não informado'
-            });
+        } else {
+            if (data.type === TransactionType.TRANSFERENCIA && !data.secondaryAccountNumber) {
+                return of({
+                    success: false,
+                    httpStatusCode: 400,
+                    message: 'Número da conta recebedora não informado'
+                });
+            } else if (data.originAccountNumber === data.secondaryAccountNumber) {
+                return of({
+                    success: false,
+                    httpStatusCode: 400,
+                    message: 'Número da conta recebedora precisa ser diferente da conta de origem'
+                });
+            }
         }
         return this.validateNext(data);
     }

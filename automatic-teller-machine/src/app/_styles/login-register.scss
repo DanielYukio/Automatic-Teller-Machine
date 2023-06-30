@@ -131,9 +131,9 @@ mat-icon {
     #register-container {
         display: flex;
         flex-direction: column;
-        // background-image: url(../../assets/atm-machine-icon.png);
+        background-image: url(../../assets/background.jpg);
         background-size: cover;
-        box-shadow: inset 0 0 0 1000px rgba(4, 142, 75, 0.408);
+        box-shadow: inset 0 0 0 1000px rgba(83, 188, 223, 0.408);
     }
 
     #freLogo {
@@ -141,7 +141,7 @@ mat-icon {
     }
 
     #formBar {
-        width: 45vw;
+        width: 40vw;
         align-self: flex-end;
     }
 
