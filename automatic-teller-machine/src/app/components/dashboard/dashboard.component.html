@@ -1,9 +1,22 @@
 <div id="dashboard-container">
-    <span class="title">Dashboard</span>
+    <div class="dashboard-row">
+        <mat-card class="account-info">
+            <span>N° da Conta: {{accountInfo?.accountNumber || 'Não Carregado'}}</span>
+            <strong class="account-balance">{{accountInfo?.balance || '' | currency: 'R$ '}}</strong>
+        </mat-card>
 
-    <div class="account-info">
+        <div class="dashboard-row">
+            <mat-card class="table-card mat-elevation-z8">
+                <div class=""></div>
+            </mat-card>
+
+            <mat-card class="table-card mat-elevation-z8">
+                a
+            </mat-card>
+        </div>
     </div>
 
-    <div class="last-transactions">
-    </div>
+    <mat-card class="chart-card mat-elevation-z8">
+        a
+    </mat-card>
 </div>

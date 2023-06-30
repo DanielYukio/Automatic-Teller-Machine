@@ -1,0 +1,11 @@
+@use './some-fixes.scss';
+
+.title {
+    font-size: 1rem;
+    margin: 1rem auto 0.5rem;
+}
+
+app-dashboard {
+    width: 100%;
+    height: 100%;
+}

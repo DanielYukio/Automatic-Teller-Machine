@@ -2,6 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { HttpRouteUtils } from '../_utils';
+import { Observable } from 'rxjs';
+import { IResponse } from '../_interfaces';
+import { environment } from 'src/environments/environment';
+import { RouteNames } from '../_enums/EHttp';
 
 @Injectable({
   providedIn: 'root'
@@ -14,4 +18,11 @@ export class ApiRequestService extends HttpRouteUtils {
   ) {
     super();
   }
+
+  public getMyAccount(): Observable<IResponse> {
+    return this.http.get<IResponse>(`${environment.apiUrl}${RouteNames.Account}/info`, {
+      headers: this.authHeader(this.session.getToken())
+    });
+  }
+
 }

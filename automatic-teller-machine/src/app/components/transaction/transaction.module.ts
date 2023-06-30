@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { TransactionComponent } from './transaction.component';
+import { GlobalModule } from 'src/app/global.module';
+import { TransactionDialogComponent } from './transaction-dialog/transaction-dialog.component';
 
 
 @NgModule({
   declarations: [
-    TransactionComponent
+    TransactionComponent,
+    TransactionDialogComponent
   ],
   imports: [
     CommonModule,
-    TransactionRoutingModule
+    TransactionRoutingModule,
+    GlobalModule,
   ]
 })
 export class TransactionModule { }

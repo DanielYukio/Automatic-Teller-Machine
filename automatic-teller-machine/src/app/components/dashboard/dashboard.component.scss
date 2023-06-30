@@ -1,0 +1,37 @@
+#dashboard-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 4rem;
+}
+
+.dashboard-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    flex: 1;
+}
+
+.account-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 30%;
+    padding: 1rem 0.5rem;
+}
+
+.account-balance {
+    font-size: 2rem;
+}
+
+.table-card {
+    padding: 1rem 0.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.chart-card {}
