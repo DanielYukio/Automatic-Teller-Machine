@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc",
     "postversion": "git push && git push --tags",
+    "prisma-migrate": "npx prisma migrate dev --name init",
     "start": "ts-node src/index.ts"
   },
   "files": [

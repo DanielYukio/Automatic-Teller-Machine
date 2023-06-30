@@ -3,7 +3,7 @@ import { HttpResponse, SinglePrisma } from '../utils';
 import { ILoggedUser } from '../interfaces';
 import { Transaction } from '@prisma/client';
 import { ATM, AccountValidator, AmountValidator, TransactionDataValidator, TransactionTypeValidator } from '../classes';
-import { switchMap, throwError } from 'rxjs';
+import { from, switchMap, throwError } from 'rxjs';
 
 export const TransactionRouter = Router();
 
@@ -42,7 +42,20 @@ TransactionRouter.post('/execute', (request, response) => {
     });
 });
 
-TransactionRouter.get('/:page/:pageSize', (request, response) => {
+TransactionRouter.get('/filter/:page/:pageSize', (request, response) => {
     const user: ILoggedUser = JSON.parse(request.query.user as string);
-    const filter = request.body as Transaction;
+    const { page, pageSize } = request.params;
+
+    from(prisma.transaction.findMany({
+        where: { originAccountNumber: user.accountNumber },
+        skip: Number(page) * Number(pageSize),
+        take: Number(pageSize),
+    })).subscribe({
+        next: (res) => {
+            return HttpResponse.exitWith200(response, 'Transações Consultadas com Sucesso!', res);
+        },
+        error: (err) => {
+            return HttpResponse.exitWith404(response, 'Falha ao Consultar Transações', err);
+        }
+    })
 });

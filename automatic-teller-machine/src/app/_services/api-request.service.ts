@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { SessionService } from './session.service';
 import { HttpRouteUtils } from '../_utils';
 import { Observable } from 'rxjs';
-import { IResponse, ITransaction } from '../_interfaces';
+import { IFilter, IResponse, ITransaction } from '../_interfaces';
 import { environment } from 'src/environments/environment';
 import { RouteNames } from '../_enums/EHttp';
 
@@ -28,6 +28,12 @@ export class ApiRequestService extends HttpRouteUtils {
   public executeTransaction(data: ITransaction): Observable<IResponse> {
     return this.http.post<IResponse>(`${environment.apiUrl}${RouteNames.Transaction}/execute`,
       data, {
+      headers: this.authHeader(this.session.getToken())
+    });
+  }
+
+  public getMyTransactions(filter: IFilter): Observable<IResponse> {
+    return this.http.get<IResponse>(`${environment.apiUrl}${RouteNames.Transaction}/filter/${filter.page}/${filter.pageSize}`, {
       headers: this.authHeader(this.session.getToken())
     });
   }
