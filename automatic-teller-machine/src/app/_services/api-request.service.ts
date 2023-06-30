@@ -33,9 +33,10 @@ export class ApiRequestService extends HttpRouteUtils {
   }
 
   public getMyTransactions(filter: IFilter): Observable<IResponse> {
-    return this.http.get<IResponse>(`${environment.apiUrl}${RouteNames.Transaction}/filter/${filter.page}/${filter.pageSize}`, {
-      headers: this.authHeader(this.session.getToken())
-    });
+    return this.http.get<IResponse>(
+      `${environment.apiUrl}${RouteNames.Transaction}/filter/${filter.page}/${filter.pageSize}`,
+      { headers: this.authHeader(this.session.getToken()) }
+    );
   }
 
 }
