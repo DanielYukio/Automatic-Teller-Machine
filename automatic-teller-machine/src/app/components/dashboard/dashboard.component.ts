@@ -29,6 +29,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAccountInfo();
+    this.getTransactions();
+  }
+
+  getAccountInfo() {
     this.api.getMyAccount().subscribe({
       next: (response) => {
         console.log(response);
@@ -37,11 +42,13 @@ export class DashboardComponent implements OnInit {
       error: (error) => {
         this.alert.onHTTPError(error);
       }
-    })
+    });
+  }
+
+  getTransactions() {
     this.api.getMyTransactions({ page: 0, pageSize: 10 }).subscribe({
       next: (response) => {
         console.log(response);
-        this.accountInfo = response.value;
       },
       error: (error) => {
         this.alert.onHTTPError(error);

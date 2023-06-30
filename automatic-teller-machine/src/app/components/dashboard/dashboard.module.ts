@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { GlobalModule } from 'src/app/global.module';
 import { TransactionDialogComponent } from './transaction-dialog/transaction-dialog.component';
+import { ShowTransactionsComponent } from './show-transactions/show-transactions.component';
 // import { TransactionComponent } from '../transaction/transaction.component';
 
 
@@ -12,6 +13,7 @@ import { TransactionDialogComponent } from './transaction-dialog/transaction-dia
   declarations: [
     DashboardComponent,
     TransactionDialogComponent,
+    ShowTransactionsComponent,
   ],
   imports: [
     CommonModule,
