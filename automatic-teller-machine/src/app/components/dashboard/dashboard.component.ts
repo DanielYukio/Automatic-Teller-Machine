@@ -38,6 +38,15 @@ export class DashboardComponent implements OnInit {
         this.alert.onHTTPError(error);
       }
     })
+    this.api.getMyTransactions({ page: 0, pageSize: 10 }).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.accountInfo = response.value;
+      },
+      error: (error) => {
+        this.alert.onHTTPError(error);
+      }
+    })
   }
 
   protected openTransactionForm(type: TransactionType) {

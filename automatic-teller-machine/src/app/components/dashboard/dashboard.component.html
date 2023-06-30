@@ -4,7 +4,7 @@
 
         <span></span>
         <span>Seu Saldo é de</span>
-        <strong class="account-balance">{{accountInfo?.balance || '' | currency}}</strong>
+        <strong class="account-balance">{{accountInfo?.balance || 0 | currency: 'R$'}}</strong>
     </div>
 
     <div class="dashboard-row">
