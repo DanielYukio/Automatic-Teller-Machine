@@ -28,4 +28,23 @@
             </button>
         </div>
     </div>
+
+    <div class="transactions-container" *ngIf="transactions">
+        <h1 class="title">Transações Realizadas</h1>
+
+        <div class="transaction-column mat-elevation-z8">
+            <div class="transaction-row header">
+                <div>Tipo</div>
+                <div>Valor</div>
+                <div>Data/Hora</div>
+            </div>
+            <div *ngFor="let tr of transactions" class="transaction-row">
+                <div>{{tr.type}}</div>
+                <div>{{tr.amount | currency: 'R$'}}</div>
+                <div>{{tr.creationDate | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
+            </div>
+            <mat-paginator [pageSize]="10" #paginator class="paginator" [pageIndex]="0" [length]="transactions.length"
+                [pageSizeOptions]="[10, 20, 30, 40]" (page)="onPageChanged($event)"></mat-paginator>
+        </div>
+    </div>
 </div>

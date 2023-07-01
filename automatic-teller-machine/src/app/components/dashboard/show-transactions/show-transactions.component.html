@@ -1,9 +1,0 @@
-<div class="show-transactions-dialog">
-    <h1 class="title">Transações Realizadas</h1>
-
-    <div *ngFor="let tr of data" class="transaction-row">
-        <div>Tipo: {{tr.type}}</div>
-        <div>Valor: {{tr.amount | currency: 'R$'}}</div>
-        <div>Data: {{tr.creationDate | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
-    </div>
-</div>

@@ -50,6 +50,7 @@ TransactionRouter.get('/filter/:page/:pageSize', (request, response) => {
         where: { originAccountNumber: user.accountNumber },
         skip: Number(page) * Number(pageSize),
         take: Number(pageSize),
+
     })).subscribe({
         next: (res) => {
             return HttpResponse.exitWith200(response, 'Transações Consultadas com Sucesso!', res);

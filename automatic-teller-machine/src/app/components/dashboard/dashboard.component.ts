@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { TransactionType } from 'src/app/_enums';
-import { IAccount } from 'src/app/_interfaces';
+import { IAccount, ITransaction } from 'src/app/_interfaces';
 import { ApiRequestService, SessionService } from 'src/app/_services';
 import { AlertService } from 'src/app/_services/alert.service';
 import { TransactionDialogComponent } from './transaction-dialog/transaction-dialog.component';
@@ -17,8 +17,8 @@ import { TransactionDialogComponent } from './transaction-dialog/transaction-dia
 export class DashboardComponent implements OnInit {
   public TransactionType = TransactionType;
 
-
   protected accountInfo?: IAccount;
+  protected transactions?: ITransaction[];
 
   constructor(
     private api: ApiRequestService,
@@ -36,7 +36,6 @@ export class DashboardComponent implements OnInit {
   getAccountInfo() {
     this.api.getMyAccount().subscribe({
       next: (response) => {
-        console.log(response);
         this.accountInfo = response.value;
       },
       error: (error) => {
@@ -48,7 +47,7 @@ export class DashboardComponent implements OnInit {
   getTransactions() {
     this.api.getMyTransactions({ page: 0, pageSize: 10 }).subscribe({
       next: (response) => {
-        console.log(response);
+        this.transactions = response.value;
       },
       error: (error) => {
         this.alert.onHTTPError(error);
@@ -60,6 +59,10 @@ export class DashboardComponent implements OnInit {
     const dialog = this.dialog.open(TransactionDialogComponent, {
       data: type,
     })
+  }
+
+  protected onPageChanged(event: any) {
+    console.log(event);
   }
 
 }

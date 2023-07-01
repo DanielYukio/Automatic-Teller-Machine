@@ -60,8 +60,6 @@
     }
 }
 
-.btn-saque:hover {}
-
 .btn-transaction:hover {
     background-color: rgb(227, 249, 255);
     transition: background 1s ease;
@@ -78,4 +76,44 @@
     span {
         display: none;
     }
+}
+
+.transactions-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.transaction-column {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+        border: 0.5px solid #bebebe;
+        flex: 1;
+        padding: 1rem 2rem;
+    }
+}
+
+.header {
+    background-color: rgb(169, 203, 255);
+    font-weight: bold;
+
+    div {
+        border: none;
+    }
+}
+
+.paginator {
+    border: 0.5px solid #bebebe;
+
 }
